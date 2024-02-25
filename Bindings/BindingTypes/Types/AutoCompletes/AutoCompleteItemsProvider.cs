@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
-using HeavenAbandoned.Framework.UserInterfaces.Controls.AutoCompletes;
+using Valossy.Controls.AutoCompletes;
 using Valossy.Loggers;
 
 namespace Valossy.Bindings.BindingTypes.Types.AutoCompletes;
