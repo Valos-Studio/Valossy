@@ -3,11 +3,11 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using Godot;
-using HeavenAbandoned.Framework.UserInterfaces.Controls.DragAndDrops;
 using Valossy.Bindings;
+using Valossy.Controls.Draggables;
 using Valossy.Loggers;
 
-namespace HeavenAbandoned.Framework.Helpers.Validation.ValidationBase;
+namespace Valossy.Helpers.Validations.Bases;
 
 public partial class Node2DBase : Node2D, INotifyPropertyChanged
 {

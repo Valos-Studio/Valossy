@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Framework.Helpers.Validation;
-using Framework.Helpers.Validation.Attributes;
 using Godot;
 using Godot.Collections;
+using Valossy.Helpers.Validations;
+using Valossy.Helpers.Validations.Attributes.Types;
 using Valossy.Loggers;
 
 namespace Valossy.Controls.AutoCompletes;

@@ -1,10 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
-using Framework.Helpers.Validation.Attributes;
-using HeavenAbandoned.Framework.Helpers.Validation;
+using Valossy.Helpers.Validations.Attributes.Types;
 
-namespace Framework.Helpers.Validation;
+namespace Valossy.Helpers.Validations;
 
 public class ValidationBuilder 
 {

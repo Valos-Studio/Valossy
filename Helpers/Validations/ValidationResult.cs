@@ -1,4 +1,4 @@
-namespace Framework.Helpers.Validation;
+namespace Valossy.Helpers.Validations;
 
 public class ValidationResult
 {

@@ -1,7 +1,6 @@
 using System.Reflection;
 
-namespace Framework.Helpers.Validation.Attributes;
-
+namespace Valossy.Helpers.Validations.Attributes;
 
 public interface IValidationAttribute
 {

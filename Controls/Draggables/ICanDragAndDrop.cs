@@ -1,6 +1,6 @@
 using Godot;
 
-namespace HeavenAbandoned.Framework.UserInterfaces.Controls.DragAndDrops;
+namespace Valossy.Controls.Draggables;
 
 public interface ICanDragAndDrop
 {

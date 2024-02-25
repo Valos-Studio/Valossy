@@ -1,10 +1,9 @@
 using Godot;
 
-namespace HeavenAbandoned.Framework.UserInterfaces.Controls.DragAndDrops
+namespace Valossy.Controls.Draggables;
+
+public interface ICanBeDroppedInto
 {
-    public interface ICanBeDroppedInto
-    {
-        bool CanDropDataIn(Node droppedControl);
-        void ProcessDraggedItem(ICanDragAndDrop canDragAndDrop);
-    }
+    bool CanDropDataIn(Node droppedControl);
+    void ProcessDraggedItem(ICanDragAndDrop canDragAndDrop);
 }

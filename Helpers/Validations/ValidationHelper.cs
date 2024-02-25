@@ -1,8 +1,7 @@
-using Framework.Helpers.Validation;
 using System;
 using Valossy.Loggers;
 
-namespace HeavenAbandoned.Framework.Helpers.Validation;
+namespace Valossy.Helpers.Validations;
 
 public partial class ValidationHelper
 {
