@@ -1,9 +1,8 @@
 using System;
 
-namespace HeavenAbandoned.Framework.UserInterfaces.Controls.General
+namespace Valossy.Controls.Generals;
+
+public interface ICanBeSelected
 {
-    public interface ICanBeSelected 
-    {
-        public event EventHandler ControlSelected;
-    }
+    public event EventHandler ControlSelected;
 }

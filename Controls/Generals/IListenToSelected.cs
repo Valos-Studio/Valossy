@@ -1,9 +1,8 @@
 using System;
 
-namespace HeavenAbandoned.Framework.UserInterfaces.Controls.General
+namespace Valossy.Controls.Generals;
+
+public interface IListenToSelected
 {
-    public interface IListenToSelected
-    {
-        public void SelectedItemChanged(object sender, EventArgs e);
-    }
+    public void SelectedItemChanged(object sender, EventArgs e);
 }
