@@ -2,8 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Specialized;
 using Godot;
-using HeavenAbandoned.Framework.UserInterfaces.Controls.Collections;
-using HeavenAbandoned.Framework.UserInterfaces.Controls.General;
+using Valossy.Collections;
 using Valossy.Helpers.Nodes;
 
 namespace Valossy.Bindings.BindingTypes.Types;

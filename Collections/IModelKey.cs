@@ -1,4 +1,4 @@
-namespace HeavenAbandoned.addons.Valossy.Collections
+namespace Valossy.Collections
 {
     public interface IModelKey 
     {

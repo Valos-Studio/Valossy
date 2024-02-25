@@ -1,4 +1,4 @@
-namespace HeavenAbandoned.Framework.UserInterfaces.Controls.Collections
+namespace Valossy.Collections
 {
     public interface IHaveModelKey 
     {

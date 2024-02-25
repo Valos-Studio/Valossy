@@ -2,9 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using HeavenAbandoned.Framework.UserInterfaces.Controls.General;
 
-namespace HeavenAbandoned.Framework.UserInterfaces.Controls.Collections.UpdatableObservableCollection;
+namespace Valossy.Collections.UpdatableObservableCollection;
 
 public class UpdatableObservableCollection<T> : ObservableCollection<T>, IListenToSelected, IBindingCollection
     where T : IHaveModelKey
