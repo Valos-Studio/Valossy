@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using Godot;
 
 namespace Valossy.Helpers.Nodes;
@@ -24,5 +25,10 @@ public static class NodeExtensions
         return node != null
                && GodotObject.IsInstanceValid(node)
                && !node.IsQueuedForDeletion();
+    }
+    
+    public static async Task WaitNextFrame(this Node node)
+    {
+        await node.ToSignal(node.GetTree(), "process_frame");
     }
 }
