@@ -1,7 +1,6 @@
-namespace Valossy.Collections
+namespace Valossy.Collections;
+
+public interface IHaveModelKey
 {
-    public interface IHaveModelKey 
-    {
-        public object ModelKey { get; }
-    }
+    public object ModelKey { get; }
 }
