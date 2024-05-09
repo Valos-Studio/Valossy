@@ -31,4 +31,9 @@ public static class NodeExtensions
     {
         await node.ToSignal(node.GetTree(), "process_frame");
     }
+    
+    public static void AddToInterfaceGroup<T>(this Node node) where T : class
+    {
+        node.AddToGroup(typeof(T).Name);
+    }
 }

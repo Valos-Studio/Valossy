@@ -9,9 +9,15 @@ namespace Valossy.Collections.UpdatableObservableCollection;
 public class UpdatableObservableCollection<T> : ObservableCollection<T>, IListenToSelected, IBindingCollection
     where T : IHaveModelKey
 {
+    public delegate void ItemAddedEventHandler(T newItem);
+    public delegate void ItemRemovedEventHandler(T removedItem);
+
+    public event ItemAddedEventHandler ItemAdded;
+    public event ItemRemovedEventHandler ItemRemoved;
+    
     private readonly Dictionary<object, int> keyToIndex = new Dictionary<object, int>();
 
-    private readonly object lockObject = new();
+    private readonly object lockObject = new object();
 
     public T SelectedItem { get; set; }
 
@@ -34,6 +40,8 @@ public class UpdatableObservableCollection<T> : ObservableCollection<T>, IListen
                 this.InsertItem(index, item);
                 this.keyToIndex[item.ModelKey] = index;
             }
+            
+            ItemAdded?.Invoke(item);
         }
     }
 
@@ -67,6 +75,8 @@ public class UpdatableObservableCollection<T> : ObservableCollection<T>, IListen
             {
                 this.RemoveItem(index);
                 this.keyToIndex.Remove(item.ModelKey);
+                
+                ItemRemoved?.Invoke(item);
             }
         }
     }
