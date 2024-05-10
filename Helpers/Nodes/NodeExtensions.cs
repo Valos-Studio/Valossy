@@ -34,6 +34,9 @@ public static class NodeExtensions
     
     public static void AddToInterfaceGroup<T>(this Node node) where T : class
     {
-        node.AddToGroup(typeof(T).Name);
+        if (Engine.IsEditorHint() == false)
+        {
+            node.AddToGroup(typeof(T).Name);
+        }
     }
 }
