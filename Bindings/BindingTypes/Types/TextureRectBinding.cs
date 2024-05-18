@@ -34,6 +34,11 @@ public class TextureRectBinding : IBindingTypeHandler
         }
     }
 
+    public void UnBind(object modelObject, string modelPropertyName, object viewObject)
+    {
+        throw new NotImplementedException();
+    }
+
     public Type ProcessingType()
     {
         return typeof(TextureRect);

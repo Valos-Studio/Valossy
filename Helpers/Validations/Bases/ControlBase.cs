@@ -42,7 +42,15 @@ public partial class ControlBase : Control, INotifyPropertyChanged
         else
         {
             BindingHandler.ProcessBindings(this);
+            
+            
+            this.TreeExited+= OnTreeExited;
         }
+    }
+
+    public void OnTreeExited()
+    {
+        BindingHandler.DisposeBindings(this);
     }
 
     public override bool _CanDropData(Vector2 atPosition, Variant data)

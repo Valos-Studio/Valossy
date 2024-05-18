@@ -100,4 +100,52 @@ public class BindingHandler
 
         return bindingObject;
     }
+    
+    public static void DisposeBindings(object bindingObject)
+    {
+        PropertyInfo[] properties = bindingObject.GetType().GetProperties();
+
+        foreach (PropertyInfo property in properties)
+        {
+            IEnumerable<Binding> attributes = property.GetCustomAttributes<Binding>();
+            
+            foreach (Binding attribute in attributes)
+            {
+                Type viewType = property.PropertyType;
+
+                IBindingTypeHandler bindingTypeHandler =
+                    BindingTypeHandlers.GetBindingHandler(attribute.BindingTypeHandler ?? viewType);
+
+                if (bindingTypeHandler == null)
+                {
+                    Logger.Error($"No {nameof(BindingTypeHandlers)} found for {viewType}");
+                    continue;
+                }
+
+                // Parent is needed for primitive types as we need to use .SetValue on the C# Property
+                object parentObject = GetParentToBindingProperty(bindingObject, attribute.ModelPropertyPath);
+
+                // We get the last property from the path as that is the binding property
+                string modelPropertyName = attribute.ModelPropertyPath?.Split('.')?.Last();
+
+                object viewObject = property.GetValue(bindingObject);
+
+                if (viewObject == null)
+                {
+                    Logger.Error(
+                        $"Binding failed, viewObject is not injected in the Inspector. Check the View injection for property {property.Name}");
+                    continue;
+                }
+
+                if (parentObject == null)
+                {
+                    Logger.Error(
+                        $"Binding failed, parentObject could not be found. Check the Binding for property {property.Name} and that the Model is perhaps not null.");
+                    continue;
+                }
+
+                bindingTypeHandler.UnBind(parentObject, modelPropertyName, viewObject);
+            }
+        }
+    }
 }

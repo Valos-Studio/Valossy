@@ -83,6 +83,11 @@ public class ContainerBinding : IBindingTypeHandler
         };
     }
 
+    public void UnBind(object modelObject, string modelPropertyName, object viewObject)
+    {
+        throw new NotImplementedException();
+    }
+
     public Type ProcessingType()
     {
         return typeof(Container);
