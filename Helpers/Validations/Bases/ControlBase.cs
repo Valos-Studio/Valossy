@@ -16,8 +16,8 @@ public partial class ControlBase : Control, INotifyPropertyChanged
     public event PropertyChangedEventHandler PropertyChanged;
 
     public event EventHandler ControlSelected;
- 
-    public void RaisePropertyChanged([CallerMemberName]string prop = "")
+
+    public void RaisePropertyChanged([CallerMemberName] string prop = "")
     {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
     }
@@ -47,7 +47,7 @@ public partial class ControlBase : Control, INotifyPropertyChanged
 
     public override bool _CanDropData(Vector2 atPosition, Variant data)
     {
-        if(this is ICanBeDroppedInto canBeDroppedInto)
+        if (this is ICanBeDroppedInto canBeDroppedInto)
         {
             var droppedControl = data.As<Node>();
             return canBeDroppedInto.CanDropDataIn(droppedControl);
@@ -55,15 +55,31 @@ public partial class ControlBase : Control, INotifyPropertyChanged
 
         return false;
     }
-    
+
     public override void _DropData(Vector2 atPosition, Variant data)
     {
         Node controlToDropDataIn = data.As<Node>();
-        
-        if(this is ICanBeDroppedInto canBeDroppedInto && controlToDropDataIn is ICanDragAndDrop canDragAndDrop)
+
+        if (this is ICanBeDroppedInto canBeDroppedInto && controlToDropDataIn is ICanDragAndDrop canDragAndDrop)
         {
-            Logger.Trace($"Dropping {controlToDropDataIn?.GetType().Name} into control {canBeDroppedInto?.GetType().Name}");
+            Logger.Trace(
+                $"Dropping {controlToDropDataIn?.GetType().Name} into control {canBeDroppedInto?.GetType().Name}");
             canBeDroppedInto.ProcessDraggedItem(canDragAndDrop);
         }
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        Delegate[] invocationList = PropertyChanged?.GetInvocationList();
+
+        if (invocationList != null)
+        {
+            foreach (Delegate d in invocationList)
+            {
+                PropertyChanged -= (d as PropertyChangedEventHandler);
+            }
+        }
+
+        base.Dispose(disposing);
     }
 }

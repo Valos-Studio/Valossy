@@ -68,4 +68,19 @@ public partial class NodeBase : Node, INotifyPropertyChanged
             canBeDroppedInto.ProcessDraggedItem(canDragAndDrop);
         }
     }
+    
+    protected override void Dispose(bool disposing)
+    {
+        Delegate[] invocationList = PropertyChanged?.GetInvocationList();
+
+        if (invocationList != null)
+        {
+            foreach (Delegate d in invocationList)
+            {
+                PropertyChanged -= (d as PropertyChangedEventHandler);
+            }
+        }
+
+        base.Dispose(disposing);
+    }
 }
