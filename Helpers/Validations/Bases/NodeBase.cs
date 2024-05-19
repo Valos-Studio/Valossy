@@ -36,15 +36,18 @@ public partial class NodeBase : Node, INotifyPropertyChanged
 
     public override void _Ready()
     {
-        if (Engine.IsEditorHint() == true)
-        {
-        }
-        else
+        if (Engine.IsEditorHint() == false)
         {
             BindingHandler.ProcessBindings(this);
+            
+            this.TreeExited += OnTreeExited;
         }
     }
 
+    public virtual void OnTreeExited()
+    {
+        BindingHandler.DisposeBindings(this);
+    }
     public bool _CanDropData(Vector2 atPosition, Variant data)
     {
         if (this is ICanBeDroppedInto canBeDroppedInto)
@@ -68,7 +71,7 @@ public partial class NodeBase : Node, INotifyPropertyChanged
             canBeDroppedInto.ProcessDraggedItem(canDragAndDrop);
         }
     }
-    
+
     protected override void Dispose(bool disposing)
     {
         Delegate[] invocationList = PropertyChanged?.GetInvocationList();

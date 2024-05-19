@@ -38,17 +38,12 @@ public partial class ControlBase : Control, INotifyPropertyChanged
     {
         if (Engine.IsEditorHint() == false)
         {
-            this.TreeEntered += OnTreeEntered;
-
             this.TreeExited += OnTreeExited;
+            
+            BindingHandler.ProcessBindings(this);
         }
     }
-
-    public void OnTreeEntered()
-    {
-        BindingHandler.ProcessBindings(this);
-    }
-
+    
     public void OnTreeExited()
     {
         BindingHandler.DisposeBindings(this);

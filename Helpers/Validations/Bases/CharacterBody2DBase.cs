@@ -29,18 +29,13 @@ public partial class CharacterBody2DBase : CharacterBody2D, INotifyPropertyChang
     {
         if (Engine.IsEditorHint() == false)
         {
-            this.TreeEntered += OnTreeEntered;
+            BindingHandler.ProcessBindings(this);
 
             this.TreeExited += OnTreeExited;
         }
     }
 
-    public void OnTreeEntered()
-    {
-        BindingHandler.ProcessBindings(this);
-    }
-
-    public void OnTreeExited()
+    public virtual void OnTreeExited()
     {
         BindingHandler.DisposeBindings(this);
     }

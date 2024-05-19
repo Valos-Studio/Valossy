@@ -36,15 +36,19 @@ public partial class Node2DBase : Node2D, INotifyPropertyChanged
 
     public override void _Ready()
     {
-        if (Engine.IsEditorHint() == true)
-        {
-        }
-        else
+        if (Engine.IsEditorHint() == false)
         {
             BindingHandler.ProcessBindings(this);
+            
+            this.TreeExited += OnTreeExited;
         }
     }
 
+    public virtual void OnTreeExited()
+    {
+        BindingHandler.DisposeBindings(this);
+    }
+    
     public new void ChildEnteredTree(Node node)
     {
         Logger.Info("hello");
