@@ -4,27 +4,18 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using Godot;
 using Valossy.Bindings;
-using Valossy.Controls.Draggables;
-using Valossy.Loggers;
 
 namespace Valossy.Helpers.Validations.Bases;
 
-public partial class ControlBase : Control, INotifyPropertyChanged
+public partial class StaticBody2DBase : StaticBody2D, INotifyPropertyChanged
 {
     protected bool failedValidation;
 
     public event PropertyChangedEventHandler PropertyChanged;
 
-    public event EventHandler ControlSelected;
-
     public void RaisePropertyChanged([CallerMemberName] string prop = "")
     {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
-    }
-
-    public void OnControlSelected()
-    {
-        ControlSelected?.Invoke(this, EventArgs.Empty);
     }
 
     public override string[] _GetConfigurationWarnings()
@@ -52,29 +43,6 @@ public partial class ControlBase : Control, INotifyPropertyChanged
     public void OnTreeExited()
     {
         BindingHandler.DisposeBindings(this);
-    }
-
-    public override bool _CanDropData(Vector2 atPosition, Variant data)
-    {
-        if (this is ICanBeDroppedInto canBeDroppedInto)
-        {
-            var droppedControl = data.As<Node>();
-            return canBeDroppedInto.CanDropDataIn(droppedControl);
-        }
-
-        return false;
-    }
-
-    public override void _DropData(Vector2 atPosition, Variant data)
-    {
-        Node controlToDropDataIn = data.As<Node>();
-
-        if (this is ICanBeDroppedInto canBeDroppedInto && controlToDropDataIn is ICanDragAndDrop canDragAndDrop)
-        {
-            Logger.Trace(
-                $"Dropping {controlToDropDataIn?.GetType().Name} into control {canBeDroppedInto?.GetType().Name}");
-            canBeDroppedInto.ProcessDraggedItem(canDragAndDrop);
-        }
     }
 
     protected override void Dispose(bool disposing)
