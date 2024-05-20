@@ -44,7 +44,7 @@ public partial class ControlBase : Control, INotifyPropertyChanged
         }
     }
     
-    public void OnTreeExited()
+    public virtual void OnTreeExited()
     {
         BindingHandler.DisposeBindings(this);
     }
