@@ -1,6 +1,6 @@
 ﻿namespace Valossy.Collections;
 
-public interface IModelId : IHaveModelId
+public interface IModelId
 {
     public object Id { get; set; }
 }
