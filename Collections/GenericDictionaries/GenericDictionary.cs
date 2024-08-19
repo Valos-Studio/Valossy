@@ -10,7 +10,6 @@ public partial class GenericDictionary<TKey, TValue>
         get => this.dictionary[key] as TValue;
         set => this.dictionary[key] = value;
     }
-
     public ICollection<TKey> Keys { get; }
     public ICollection<TValue> Values { get; }
     public bool IsReadOnly { get; }
