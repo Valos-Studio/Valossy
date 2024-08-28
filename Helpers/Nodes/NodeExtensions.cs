@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using Godot;
 using Godot.Collections;
@@ -7,7 +8,7 @@ namespace Valossy.Helpers.Nodes;
 public static class NodeExtensions
 {
     /// <summary>
-    /// Usage this.GetGlobalNode&lt;ClassName&gt;()  
+    /// Usage this.GetGlobalNode&lt;ClassName&gt;()
     /// </summary>
     /// <typeparam name="T">Name must be same name as Class</typeparam>
     /// <returns>Object from Autoload</returns>
@@ -51,5 +52,12 @@ public static class NodeExtensions
         {
             node.AddToGroup(typeof(T).Name);
         }
+    }
+
+    public static string Translate(this Node node, string text, params object[] args)
+    {
+        string translation = node.Tr(text);
+
+        return String.Format(translation, args);
     }
 }
