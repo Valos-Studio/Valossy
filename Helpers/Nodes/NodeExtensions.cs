@@ -59,24 +59,26 @@ public static class NodeExtensions
     {
         string translation = node.Tr(text);
 
-        List<string> items = new List<string>(args.Length);
+        string[] items = new string[args.Length];
 
-        foreach (object arg in args)
+        for (int index = 0; index < args.Length; index++)
         {
+            object arg = args[index];
+
             string result;
 
             if (arg is string str)
             {
-                result = node.Tr(arg.ToString());
+                result = node.Tr(str);
             }
             else
             {
                 result = arg.ToString();
             }
 
-            items.Add(result);
+            items[index] = result;
         }
 
-        return String.Format(translation, args);
+        return String.Format(translation, items);
     }
 }
