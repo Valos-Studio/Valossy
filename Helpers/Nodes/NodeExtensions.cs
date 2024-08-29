@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Godot;
 using Godot.Collections;
@@ -57,6 +58,24 @@ public static class NodeExtensions
     public static string Translate(this Node node, string text, params object[] args)
     {
         string translation = node.Tr(text);
+
+        List<string> items = new List<string>(args.Length);
+
+        foreach (object arg in args)
+        {
+            string result;
+
+            if (arg is string str)
+            {
+                result = node.Tr(arg.ToString());
+            }
+            else
+            {
+                result = arg.ToString();
+            }
+
+            items.Add(result);
+        }
 
         return String.Format(translation, args);
     }
