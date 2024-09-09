@@ -15,6 +15,7 @@ public static class BindingTypeHandlers
         AddBindingHandler(new LabelBinding());
         AddBindingHandler(new TextEditBinding());
         AddBindingHandler(new ContainerBinding());
+        AddBindingHandler(new ProgressBarBinding());
         AddBindingHandler(new AutoCompleteItemsProvider());
         AddBindingHandler(new AutoCompleteSelectedItemBinding());
         AddBindingHandler(new TextureRectBinding());
