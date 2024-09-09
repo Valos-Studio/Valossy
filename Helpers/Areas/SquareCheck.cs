@@ -20,7 +20,7 @@ public static class SquareCheck
 
         foreach (Vector2 corner in innerCorners)
         {
-            if (!IsPointInside(corner, outerRectanglePosition, outerRectangleSize))
+            if (IsPointInside(corner, outerRectanglePosition, outerRectangleSize) == false)
             {
                 return false;
             }
