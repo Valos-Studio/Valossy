@@ -25,4 +25,16 @@ public static class NodeHelper
             controlNode.Visible = true;
         }
     }
+
+    /// <summary>
+    /// This will make sure the node is not null or QueueFree or in some process of being disposed
+    /// Usage this.IsValid&lt;ClassName&gt;()
+    /// </summary>
+    /// <returns>True if the object is safe for usage</returns>
+    public static bool IsValid<T>(T node) where T : GodotObject
+    {
+        return node != null
+               && GodotObject.IsInstanceValid(node)
+               && !node.IsQueuedForDeletion();
+    }
 }
