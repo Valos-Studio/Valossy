@@ -30,18 +30,6 @@ public static class NodeExtensions
         return nodes[0] as T;
     }
 
-    /// <summary>
-    /// This will make sure the node is not null or QueueFree or in some process of being disposed
-    /// Usage this.IsValid&lt;ClassName&gt;()
-    /// </summary>
-    /// <returns>True if the object is safe for usage</returns>
-    public static bool IsValid<T>(this T node) where T : GodotObject
-    {
-        return node != null
-               && GodotObject.IsInstanceValid(node)
-               && !node.IsQueuedForDeletion();
-    }
-
     public static async Task WaitNextFrame(this Node node)
     {
         await node.ToSignal(node.GetTree(), "process_frame");
