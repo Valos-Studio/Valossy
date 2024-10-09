@@ -8,7 +8,7 @@ public static class BitmaskHelper
 
         foreach (uint position in bits)
         {
-            bitmask |= 1 << (int)(position - 1);
+            bitmask |= (uint)(1 << (int)(position - 1));
         }
 
         return (uint)bitmask;
