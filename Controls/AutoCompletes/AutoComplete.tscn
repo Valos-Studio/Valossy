@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://b2pnmtx3v0qxv"]
 
-[ext_resource type="Script" path="res://addons/Valossy/Controls/AutoCompletes/AutoComplete.cs" id="1_5k6ee"]
+[ext_resource type="Script" uid="uid://bk36fgrvy7wux" path="res://addons/Valossy/Controls/AutoCompletes/AutoComplete.cs" id="1_5k6ee"]
 
 [node name="AutoComplete" type="VBoxContainer" node_paths=PackedStringArray("ItemList", "AutocompleteTextBox", "PopupPanel")]
 custom_minimum_size = Vector2(100, 0)
