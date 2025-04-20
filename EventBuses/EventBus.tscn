@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://uuttpqc6rvx1"]
 
-[ext_resource type="Script" path="res://addons/Valossy/EventBuses/EventBus.cs" id="1_cpevp"]
+[ext_resource type="Script" uid="uid://csvfj75qp07d3" path="res://addons/Valossy/EventBuses/EventBus.cs" id="1_cpevp"]
 
 [node name="EventBus" type="Node"]
 script = ExtResource("1_cpevp")
