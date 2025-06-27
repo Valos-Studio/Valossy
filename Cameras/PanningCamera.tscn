@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://1xktklhg043a"]
+
+[ext_resource type="Script" uid="uid://k66vx4tap0t7" path="res://addons/Valossy/Cameras/PanningCamera.cs" id="1_po1oo"]
+
+[node name="PanningCamera" type="Camera2D"]
+process_thread_group = 1
+process_thread_group_order = 0
+process_thread_messages = 0
+position_smoothing_enabled = true
+position_smoothing_speed = 50.0
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+script = ExtResource("1_po1oo")
