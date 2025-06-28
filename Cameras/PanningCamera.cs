@@ -1,5 +1,4 @@
 using Godot;
-using NightSwarm.Frameworks.Statics;
 using Valossy.Inputs;
 
 namespace Valossy.Cameras;
@@ -40,14 +39,14 @@ public partial class PanningCamera : Camera2D
 
     public override void _PhysicsProcess(double delta)
     {
-        InputPressed.HandleInput(InputControl.SecondaryAction, CameraDrag);
-
-        InputJustReleased.HandleInput(InputControl.SecondaryAction,
-            () => { this.lastOffset = this.Offset; });
-
-        InputJustPressed.HandleInput(InputControl.ScrollUpAction, () => CameraZoom(1f));
-
-        InputJustPressed.HandleInput(InputControl.ScrollDownAction, () => CameraZoom(-1f));
+        // InputPressed.HandleInput(InputControl.SecondaryAction, CameraDrag);
+        //
+        // InputJustReleased.HandleInput(InputControl.SecondaryAction,
+        //     () => { this.lastOffset = this.Offset; });
+        //
+        // InputJustPressed.HandleInput(InputControl.ScrollUpAction, () => CameraZoom(1f));
+        //
+        // InputJustPressed.HandleInput(InputControl.ScrollDownAction, () => CameraZoom(-1f));
     }
 
     public override void _EnterTree()
@@ -85,8 +84,8 @@ public partial class PanningCamera : Camera2D
 
         Vector2 mouseCurrentPosition = this.viewport.GetMousePosition() * zoomOffset;
 
-        InputJustPressed.HandleInput(InputControl.SecondaryAction,
-            () => { mousePosition = mouseCurrentPosition; });
+        // InputJustPressed.HandleInput(InputControl.SecondaryAction,
+        //     () => { mousePosition = mouseCurrentPosition; });
 
         if (mousePosition.Equals(mouseCurrentPosition))
         {
