@@ -1,10 +1,9 @@
 using Godot;
-using Valossy.Inputs;
 
 namespace Valossy.Cameras;
 
 [GlobalClass]
-public partial class PanningCamera : Camera2D
+public partial class ZoomCamera : Camera2D
 {
     [Signal]
     public delegate void MoveToTargetEventHandler(Vector2 target);
@@ -19,44 +18,18 @@ public partial class PanningCamera : Camera2D
     [ExportCategory("Shortcuts")]
     [Export()]
     public Shortcut ShortcutZoomIn { get; set; }
-
     [Export()] public Shortcut ShortcutZoomOut { get; set; }
-    [Export()] public Shortcut ShortcutDrag { get; set; }
-
-    private Vector2 mousePosition;
-
-    private Vector2 lastOffset;
 
     private float targetZoom;
 
-    private Viewport viewport;
-
-
     public override void _Ready()
     {
-        this.viewport = GetViewport();
-
         targetZoom = Zoom.X;
-
-        lastOffset = Vector2.Zero;
-
-        viewport.CanvasCullMask = 1;
     }
 
     public override void _Input(InputEvent @event)
     {
-        //Need clean up but works perfectly
         base._Input(@event);
-
-        if (ShortcutDrag.MatchesEvent(@event) == true)
-        {
-            CameraDrag(@event);
-        }
-
-        if (ShortcutDrag.MatchesEvent(@event) == true && @event.IsReleased())
-        {
-            this.lastOffset = this.Offset;
-        }
 
         if (ShortcutZoomOut.MatchesEvent(@event) == true)
         {
@@ -86,35 +59,6 @@ public partial class PanningCamera : Camera2D
     private void OnMoveToTarget(Vector2 target)
     {
         Offset = target;
-    }
-
-    private void CameraDrag(InputEvent @event)
-    {
-        float zoomOffset = 1f;
-
-        if (this.targetZoom < 1)
-        {
-            zoomOffset = 1 + ((1 - this.targetZoom) * 10 * 0.5f);
-        }
-
-        if (this.targetZoom > 1)
-        {
-            zoomOffset = 1 - ((1 - this.targetZoom) * 10 * 0.05f);
-        }
-
-        Vector2 mouseCurrentPosition = this.viewport.GetMousePosition() * zoomOffset;
-
-        if (ShortcutDrag.MatchesEvent(@event) == true)
-        {
-            mousePosition = mouseCurrentPosition;
-        }
-
-        if (mousePosition.Equals(mouseCurrentPosition))
-        {
-            return;
-        }
-
-        this.Offset = this.lastOffset + mousePosition - mouseCurrentPosition;
     }
 
     private void CameraZoom(float positive)
