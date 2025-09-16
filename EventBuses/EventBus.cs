@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Valossy.Loggers;
+using Logger = Valossy.Loggers.Logger;
 
 namespace Valossy.EventBuses;
 

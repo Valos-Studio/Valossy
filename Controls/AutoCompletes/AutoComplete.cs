@@ -6,6 +6,7 @@ using Godot.Collections;
 using Valossy.Helpers.Validations;
 using Valossy.Helpers.Validations.Attributes.Types;
 using Valossy.Loggers;
+using Logger = Valossy.Loggers.Logger;
 
 namespace Valossy.Controls.AutoCompletes;
 

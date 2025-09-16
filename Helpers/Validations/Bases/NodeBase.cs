@@ -6,6 +6,7 @@ using Godot;
 using Valossy.Bindings;
 using Valossy.Controls.Draggables;
 using Valossy.Loggers;
+using Logger = Valossy.Loggers.Logger;
 
 namespace Valossy.Helpers.Validations.Bases;
 
