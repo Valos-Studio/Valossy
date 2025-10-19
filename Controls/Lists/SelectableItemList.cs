@@ -1,16 +1,28 @@
-using System;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using Godot;
+using Container = Godot.Container;
 
-namespace HeavenAbandoned.addons.Valossy.Controls.Lists;
+namespace Valossy.Controls.Lists;
 
 [GlobalClass]
-public partial class SelectableItemList : Control
+public partial class SelectableItemList : Control, INotifyPropertyChanged
 {
     [Export]
-    public int MaxSelected { get; set; } = 3;
-
+    public int MaxSelected
+    {
+        get => maxSelected;
+        set
+        {
+            if (value == maxSelected) return;
+            maxSelected = value;
+            OnPropertyChanged();
+        }
+    }
+    
     private Container container;
     private Callable callable;
+    private int maxSelected = 3;
 
     public SelectableItemList()
     {
@@ -60,5 +72,12 @@ public partial class SelectableItemList : Control
         this.container.ChildEnteredTree -= ContainerOnChildEnteredTree;
         
         this.container = null;
+    }
+
+    public event PropertyChangedEventHandler PropertyChanged;
+
+    protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
+    {
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 }

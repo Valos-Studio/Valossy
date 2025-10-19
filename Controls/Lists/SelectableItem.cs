@@ -1,6 +1,6 @@
 ﻿using Godot;
 
-namespace HeavenAbandoned.addons.Valossy.Controls.Lists;
+namespace Valossy.Controls.Lists;
 
 [GlobalClass]
 public partial class SelectableItem : BaseButton
